@@ -1,13 +1,17 @@
 package com.zup.orangetalent.desafio.controlervacinas.controller;
 
+import com.zup.orangetalent.desafio.controlervacinas.event.RecursoCriadoEvent;
 import com.zup.orangetalent.desafio.controlervacinas.model.Vacina;
 import com.zup.orangetalent.desafio.controlervacinas.repository.VacinaRepository;
 import com.zup.orangetalent.desafio.controlervacinas.service.VacinaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -22,19 +26,22 @@ public class VacinaController {
     @Autowired
     private VacinaService vacinaService;
 
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
     @GetMapping
     public List<Vacina> listarTodasVacinas(){
         return  vacinaRepository.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Vacina> criar(@Valid  @RequestBody  Vacina vacina){
+    public ResponseEntity<Vacina> criar(@Valid  @RequestBody  Vacina vacina ,
+                                        HttpServletResponse httpServletResponse){
         Vacina vacinaSalva = vacinaService.salvar(vacina);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-                            .path("/{codigo}").buildAndExpand(vacinaSalva.getCodigo()).toUri();
+        publisher.publishEvent(new RecursoCriadoEvent(this , vacinaSalva.getCodigo() , httpServletResponse));
 
-        return ResponseEntity.created(uri).body(vacinaSalva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(vacinaSalva);
     }
 
 }
