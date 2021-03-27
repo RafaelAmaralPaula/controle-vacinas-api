@@ -41,8 +41,13 @@ https://github.com/RafaelAmaralPaula/controle-vacinas-api/blob/main/artigo/ARTIG
 # Autor 
  
 Rafael Amaral De Paula
-   
-https://www.linkedin.com/in/rafael-amaral-449558148/
+
+LIKEDIN
+-https://www.linkedin.com/in/rafael-amaral-449558148/
+
+YOUTUBE
+-https://www.youtube.com/channel/UC2QC0Jpjn1f0gHkk0TvvL_g
+
  
 
 
