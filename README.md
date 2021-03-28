@@ -11,7 +11,7 @@
  
 ## Back-end 
 - Java
-- Mavem 
+- Maven 
 - Spring Data JPA
 - Spring MVC
 - Spring Boot
