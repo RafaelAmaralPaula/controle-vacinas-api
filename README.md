@@ -42,7 +42,7 @@ https://github.com/RafaelAmaralPaula/controle-vacinas-api/blob/main/artigo/ARTIG
  
 Rafael Amaral De Paula
 
-LIKEDIN
+LINKEDIN
 -https://www.linkedin.com/in/rafael-amaral-449558148/
 
 YOUTUBE
